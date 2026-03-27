@@ -2,6 +2,7 @@ package com.dhananjayKr.departmentservice.service.impl;
 
 import com.dhananjayKr.departmentservice.dto.DepartmentDto;
 import com.dhananjayKr.departmentservice.entity.Department;
+import com.dhananjayKr.departmentservice.exception.ResourceNotFoundException;
 import com.dhananjayKr.departmentservice.mapper.DepartmentMapper;
 import com.dhananjayKr.departmentservice.repository.DepartmentRepository;
 import com.dhananjayKr.departmentservice.service.DepartmentService;
@@ -55,6 +56,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public DepartmentDto getDepartmentByCode(String code) {
         Department department = departmentRepository.findByDepartmentCode(code);
+
+        if (department == null) {
+            throw new ResourceNotFoundException(
+                    "Department not found with code: " + code
+            );
+        }
+
+
 
 //        DepartmentDto savedDepartmentDto = new DepartmentDto(
 //                department.getId(),

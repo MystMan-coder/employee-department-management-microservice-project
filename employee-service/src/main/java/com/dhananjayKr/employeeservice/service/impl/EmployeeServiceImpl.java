@@ -2,6 +2,7 @@ package com.dhananjayKr.employeeservice.service.impl;
 
 import com.dhananjayKr.employeeservice.dto.EmployeeDto;
 import com.dhananjayKr.employeeservice.entity.Employee;
+import com.dhananjayKr.employeeservice.exception.ResourceNotFoundException;
 import com.dhananjayKr.employeeservice.mapper.EmployeeMapper;
 import com.dhananjayKr.employeeservice.repository.EmployeeRepository;
 import com.dhananjayKr.employeeservice.service.EmployeeService;
@@ -50,7 +51,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDto getEmployeeById(Long id) {
-      Employee employee = employeeRepository.findById(id).get();
+      Employee employee = employeeRepository.findById(id).orElseThrow(
+              () -> new ResourceNotFoundException("Employee not found with id: " + id)
+      );
 
 //        EmployeeDto savedEmployeeDto = new EmployeeDto(
 //                employee.getId(),
