@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="SpringBootMicroserviceProject">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/department-service.zip!/" />
+      <root url="jar://$PROJECT_DIR$/employee-service.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
